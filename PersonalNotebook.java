@@ -99,7 +99,29 @@ public class PersonalNotebook {
     }
 
     private static void exportNote() {
+        viewNotes();
+        if (notes.isEmpty()) return;
 
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nEnter the title of the note to export: ");
+        String title = scanner.nextLine().trim();
+
+        if (notes.containsKey(title)) {
+            Note note = notes.get(title);
+            String fileName = "exports/" + title + ".txt";
+            new File("exports").mkdirs(); // Create the exports directory if not exists
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+                writer.write("Title: " + note.getTitle() + "\n");
+                writer.write("Date Created: " + note.getDateCreated() + "\n");
+                writer.write("Content:\n" + note.getContent());
+                System.out.println("Note exported successfully to " + fileName);
+            } catch (IOException e) {
+                System.out.println("Failed to export the note: " + e.getMessage());
+            }
+        } else {
+            System.out.println("No note found with the given title.");
+        }
     }
 
     private static void loadNotes() {
