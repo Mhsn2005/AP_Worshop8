@@ -133,6 +133,10 @@ public class PersonalNotebook {
     }
 
     private static void saveNotes() {
-
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(NOTES_FILE))) {
+            oos.writeObject(notes);
+        } catch (IOException e) {
+            System.out.println("Failed to save notes: " + e.getMessage());
+        }
     }
 }
