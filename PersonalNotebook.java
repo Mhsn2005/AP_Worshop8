@@ -69,7 +69,17 @@ public class PersonalNotebook {
     }
 
     private static void viewNotes() {
+        if (notes.isEmpty()) {
+            System.out.println("No notes available.");
+            return;
+        }
 
+        System.out.println("\n--- List of Notes ---");
+        int index = 1;
+        for (String title : notes.keySet()) {
+            Note note = notes.get(title);
+            System.out.printf("%d. %s (Created on: %s)%n", index++, title, note.getDateCreated());
+        }
     }
 
     private static void deleteNote() {
