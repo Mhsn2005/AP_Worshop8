@@ -83,7 +83,19 @@ public class PersonalNotebook {
     }
 
     private static void deleteNote() {
+        viewNotes();
+        if (notes.isEmpty()) return;
 
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nEnter the title of the note to delete: ");
+        String title = scanner.nextLine().trim();
+
+        if (notes.containsKey(title)) {
+            notes.remove(title);
+            System.out.println("Note deleted successfully.");
+        } else {
+            System.out.println("No note found with the given title.");
+        }
     }
 
     private static void exportNote() {
