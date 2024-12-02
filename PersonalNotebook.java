@@ -36,6 +36,16 @@ public class PersonalNotebook {
     }
 
     private static void showMenu() {
+        System.out.println("\n--- Personal Notebook ---");
+        System.out.println("1. Add a new note");
+        System.out.println("2. View all notes");
+        System.out.println("3. Delete a note");
+        System.out.println("4. Export a note");
+        System.out.println("5. Exit");
+        System.out.print("Enter your choice: ");
+    }
+
+    private static void addNote() {
 
     }
 
@@ -53,10 +63,10 @@ public class PersonalNotebook {
 
     private static void loadNotes() {
 
+        }
     }
-}
 
-private static void saveNotes() {
+    private static void saveNotes() {
 
-}
+    }
 }
