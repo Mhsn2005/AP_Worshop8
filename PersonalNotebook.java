@@ -125,7 +125,10 @@ public class PersonalNotebook {
     }
 
     private static void loadNotes() {
-
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(NOTES_FILE))) {
+            notes = (Map<String, Note>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            notes = new HashMap<>();
         }
     }
 
