@@ -46,7 +46,26 @@ public class PersonalNotebook {
     }
 
     private static void addNote() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nEnter the title of the note: ");
+        String title = scanner.nextLine().trim();
 
+        if (notes.containsKey(title)) {
+            System.out.println("A note with this title already exists. Please choose a different title.");
+            return;
+        }
+
+        System.out.println("Enter the content of the note (end with an empty line):");
+        StringBuilder content = new StringBuilder();
+        while (true) {
+            String line = scanner.nextLine();
+            if (line.trim().isEmpty()) break;
+            content.append(line).append("\n");
+        }
+
+        Note newNote = new Note(title, content.toString().trim(), new Date());
+        notes.put(title, newNote);
+        System.out.println("Note added successfully.");
     }
 
     private static void viewNotes() {
